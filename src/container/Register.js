@@ -7,7 +7,7 @@ import Grid from '@mui/material/Grid';
 import TextField from '@mui/material/TextField';
 import Typography from '@mui/material/Typography';
 import { createUserWithEmailAndPassword } from 'firebase/auth';
-import { useState } from 'react';
+import { useState} from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import CssBaseline from '@mui/material/CssBaseline';
 import { auth } from '../config/firebase';
@@ -15,6 +15,8 @@ import { auth } from '../config/firebase';
 const Register = () => {
     const navigate = useNavigate();
     const [errorMessage, setErrorMessage] = useState('')
+
+    
 
     const handleSubmit = async (event) => {
         event.preventDefault();
@@ -30,6 +32,8 @@ const Register = () => {
             setErrorMessage(error.message);
         }
     };
+
+    
 
     return (
       <Grid container component="main" sx={{ height: '100vh' }}>
