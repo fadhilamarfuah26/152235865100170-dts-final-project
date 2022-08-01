@@ -10,24 +10,32 @@ import { createUserWithEmailAndPassword } from 'firebase/auth';
 import { useState} from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import CssBaseline from '@mui/material/CssBaseline';
-import { auth } from '../config/firebase';
+import { auth, db } from '../config/firebase';
+import { collection, addDoc } from "firebase/firestore";
 
 const Register = () => {
     const navigate = useNavigate();
     const [errorMessage, setErrorMessage] = useState('')
 
     
-
     const handleSubmit = async (event) => {
         event.preventDefault();
         const data = new FormData(event.currentTarget);
         const email = data.get('email');
         const password = data.get('password');
+        const username = data.get('username');
         
         try {
             const { user } = await createUserWithEmailAndPassword(auth, email, password);
             console.log(user);
             navigate("/");
+        } catch (error) {
+            setErrorMessage(error.message);
+        }
+
+        try{
+            const create = await addDoc(collection(db, "user"), {email, password, username});
+            console.log(create);
         } catch (error) {
             setErrorMessage(error.message);
         }
@@ -69,6 +77,16 @@ const Register = () => {
                 </Typography>
                 <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 3 }}>
                     <Grid container spacing={2}>
+                    <Grid item xs={12}>
+                            <TextField
+                                required
+                                fullWidth
+                                id="username"
+                                label="Nama"
+                                name="username"
+                                autoComplete="username"
+                            />
+                        </Grid>
                         <Grid item xs={12}>
                             <TextField
                                 required

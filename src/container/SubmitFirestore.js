@@ -16,7 +16,7 @@ const SubmitFirestore = () => {
    
       return (
         <div>{user.map((users) => 
-            {return <div>halo {users.name} </div>})};
+            {return <div>halo {users.username} </div>})};
         </div>
     )
         }
