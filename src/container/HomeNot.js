@@ -10,7 +10,7 @@ import HomeContent from './container/Home';
 const HomeNot = () => {
   return (
     <ThemeProvider theme={theme}>
-      <div className="App">
+      <div className="Homenot">
         <NavbarNot />
         <WallbarNot/>
         <HomeContent/>

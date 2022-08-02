@@ -6,7 +6,7 @@ import { Outlet } from 'react-router-dom';
 import NavBar from './component/NavBar';
 import theme from './themes/theme';
 import WallBar from './component/WallBar';
-import HomeContent from './container/Home';
+import HomeContent from './container/HomeContent';
 const App = () => {
   return (
     <ThemeProvider theme={theme}>
