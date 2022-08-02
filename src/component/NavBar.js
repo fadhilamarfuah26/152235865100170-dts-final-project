@@ -6,7 +6,7 @@ import Typography from '@mui/material/Typography';
 import { signOut } from 'firebase/auth';
 import * as React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import SearchForm from './component/SearchForm'
+
 import { auth } from '../config/firebase';
 
 const NavBar = () => {
@@ -45,9 +45,7 @@ const NavBar = () => {
                         </Link>
                     </Typography>
                     <Box sx={{ display: 'flex' }}>
-                        <Box sx={{ padding: 1 }}>
-                            <SearchForm/>
-                        </Box>
+                        
                         <Box sx={{ padding: 1 }}>
                             <Logout onClick={onLogout} />
                         </Box>
