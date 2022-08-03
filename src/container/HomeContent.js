@@ -9,7 +9,7 @@ const HomeContent = () => {
     const getData = async () => {
       try {
         const response = await rapid.get(
-          '/hiragana'
+          'https://japanese-alphabet.p.rapidapi.com/api/hiragana'
         );
         setData(response.data);
         setError(null);
