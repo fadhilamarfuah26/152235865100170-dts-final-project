@@ -17,7 +17,7 @@ const HomeContent = () => {
         setError(null);
       } catch (err) {
         setError(err.message);
-        setData(null);
+        setData([]);
       } finally {
         setLoading(false);
       }
