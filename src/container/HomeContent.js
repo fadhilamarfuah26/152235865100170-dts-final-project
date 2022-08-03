@@ -1,55 +1,113 @@
-import { Box } from '@mui/material';
-import { useEffect, useState } from 'react';
-
-import rapid from '../api/rapid';
-import HiraganaContent from '../component/HiraganaContent';
-
+import React, { useState, useEffect } from "react";
+import ServiceRapid from "../container/ServiceRapid";
+import { Link } from "react-router-dom";
 const HomeContent = () => {
-    const [hiraganas, setHiragana] = useState([]);
-    const [hiraganaReady, setHiraganaReady] = useState(false);
-
-    useEffect(() => {
-        const fetchHiragana = async () => {
-            try {
-                const fetchedHiragana = await rapid.get("hiragana");
-                setHiragana(fetchedHiragana.data.results);
-                setHiraganaReady(true);
-            } catch (error) {
-                console.log(error);
-            }
-        }
-
-        fetchHiragana();
-    }, []);
-
-    useEffect(() => {
-        if (!hiraganaReady) return;
-        
+  const [tutorials, setTutorials] = useState([]);
+  const [currentTutorial, setCurrentTutorial] = useState(null);
+  const [currentIndex, setCurrentIndex] = useState(-1);
+  const [searchTitle, setSearchTitle] = useState("");
+  useEffect(() => {
+    retrieveHiragana();
+  }, []);
+  const onChangeSearchTitle = e => {
+    const searchHiragana = e.target.value;
+    setSearchTitle(searchHiragana);
+  };
+  const retrieveHiragana = () => {
+    ServiceRapid.getAll()
+      .then(response => {
+        setTutorials(response.data);
+        console.log(response.data);
+      })
+      .catch(e => {
+        console.log(e);
+      });
+    };
+    const setActiveTutorial = (tutorial, index) => {
+      setCurrentTutorial(tutorial);
+      setCurrentIndex(index);
+    };
+    
+    const findByTitle = () => {
+      ServiceRapid.findByTitle(searchTitle)
+        .then(response => {
+          setTutorials(response.data);
+          console.log(response.data);
+        })
+        .catch(e => {
+          console.log(e);
         });
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-
-
+    };
     return (
-        <Box sx={{
-            display: 'flex',
-            flexDirection: 'column',
-            mt: 5,
-        }}>
-
-            <Box sx={{
-                display: 'flex',
-                flexDirection: 'row',
-                flexWrap: 'wrap',
-                justifyContent: 'space-between',
-            }}>
-                {
-                    hiraganas.map(hiragana => (
-                        <HiraganaContent key={hiragana.name} hiragana={hiragana}></HiraganaContent>
-                    ))
+        <div className="list row">
+          <div className="col-md-8">
+            <div className="input-group mb-3">
+              <input
+                type="text"
+                className="form-control"
+                placeholder="Search by title"
+                value={searchTitle}
+                onChange={onChangeSearchTitle}
+              />
+              <div className="input-group-append">
+                <button
+                  className="btn btn-outline-secondary"
+                  type="button"
+                  onClick={findByTitle}
+                >
+                Search
+            </button>
+          </div>
+        </div>
+      </div>
+      <div className="col-md-6">
+        <h4>Tutorials List</h4>
+        <ul className="list-group">
+          {tutorials &&
+            tutorials.map((tutorial, index) => (
+              <li
+                className={
+                  "list-group-item " + (index === currentIndex ? "active" : "")
                 }
-            </Box>
-        </Box>
-    );
-}
-
-export default HomeContent;
+                onClick={() => setActiveTutorial(tutorial, index)}
+                key={index}
+              >
+                {tutorial.title}
+              </li>
+            ))}
+        </ul>
+      </div>
+      <div className="col-md-6">
+        {currentTutorial ? (
+          <div>
+            <h4>Tutorial</h4>
+            <div>
+              <label>
+                <strong>Title:</strong>
+              </label>{" "}
+              {currentTutorial.title}
+            </div>
+            <div>
+              <label>
+                <strong>Description:</strong>
+              </label>{" "}
+              {currentTutorial.description}
+            </div>
+            <Link
+              to={"/tutorials/" + currentTutorial.id}
+              className="badge badge-warning"
+            >
+              Edit
+            </Link>
+          </div>
+        ) : (
+          <div>
+            <br />
+            <p>Please click on a Tutorial...</p>
+          </div>
+          )}
+          </div>
+        </div>
+      );
+    };
+    export default HomeContent;
