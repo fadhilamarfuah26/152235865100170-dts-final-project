@@ -39,7 +39,7 @@ const HomeContent = () => {
   }}>
       {
           data.map(hiragana => (
-              <HiraganaContent key={hiragana.title} hiragana={hiragana}></HiraganaContent>
+              <HiraganaContent key={hiragana.japanese} hiragana={hiragana}></HiraganaContent>
           ))
       }
   </Box>
