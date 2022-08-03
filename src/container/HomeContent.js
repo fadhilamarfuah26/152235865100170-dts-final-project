@@ -34,9 +34,9 @@ export default function HomeContent() {
       )}
       <ul>
         {data &&
-          data.map(({ id, title }) => (
-            <li key={id}>
-              <h3>{title}</h3>
+          data.map(({ japanese,romaji }) => (
+            <li key={japanese}>
+              <h3>{romaji}</h3>
             </li>
           ))}
       </ul>
