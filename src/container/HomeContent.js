@@ -1,5 +1,7 @@
+import { Box } from '@mui/material';
 import { useState, useEffect } from "react";
 import rapid from '../api/rapid'
+import HiraganaContent from '../component/HiraganaContent'
 const HomeContent = () => {
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -24,6 +26,23 @@ const HomeContent = () => {
   }, []);
 
   return (
+    <Box sx={{
+      display: 'flex',
+      flexDirection: 'column',
+      mt: 5,
+  }}>
+    <Box sx={{
+      display: 'flex',
+      flexDirection: 'row',
+      flexWrap: 'wrap',
+      justifyContent: 'space-between',
+  }}>
+      {
+          data.map(hiragana => (
+              <HiraganaContent key={hiragana.title} hiragana={hiragana}></HiraganaContent>
+          ))
+      }
+  </Box>
     <div>
       <h1>API Posts</h1>
       {loading && <div>A moment please...</div>}
@@ -39,6 +58,7 @@ const HomeContent = () => {
           ))}
       </ul>
     </div>
+    </Box>
   );
 }
 export default HomeContent
