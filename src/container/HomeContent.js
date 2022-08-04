@@ -1,4 +1,5 @@
 import { Box } from '@mui/material';
+import _ from 'lodash';
 import { useState, useEffect } from "react";
 import rapid from '../api/rapid'
 import HiraganaContent from '../component/HiraganaContent'
@@ -39,7 +40,7 @@ const HomeContent = () => {
       justifyContent: 'space-between',
   }}>
       {
-          data.index.map(hiragana => (
+          _.mapValues(hiragana => (
               <HiraganaContent key={hiragana.name} hiragana={hiragana}></HiraganaContent>
           ))
       }
@@ -52,7 +53,7 @@ const HomeContent = () => {
       )}
       <ul>
         {data &&
-          data.index.map(({ hiragana }) => (
+          _.mapValues(({ hiragana }) => (
             <li key={hiragana.name}>
               <h3>{hiragana.content}</h3>
             </li>
