@@ -40,7 +40,7 @@ const HomeContent = () => {
       justifyContent: 'space-between',
   }}>
       {
-          _.mapValues(({hiragana}) => (
+          _.mapValues(([hiragana]) => (
               <HiraganaContent key={hiragana.name} hiragana={hiragana}></HiraganaContent>
           ))
       }
@@ -53,7 +53,7 @@ const HomeContent = () => {
       )}
       <ul>
         {data &&
-          _.mapValues(({ hiragana }) => (
+          _.mapValues(([ hiragana ]) => (
             <li key={hiragana.name}>
               <h3>{hiragana.content}</h3>
             </li>
