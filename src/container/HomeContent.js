@@ -42,11 +42,11 @@ const HomeContent = () => {
       )}
       
         {data &&
-          _.mapValues(data,([ name, content ]) => (
+          (_.mapValues(data,([ name, content ]) => (
             <ul><li key={[name.value]}>
               <h3>{[content.value]}</h3>
             </li></ul>
-          ))}
+          )))}
       
     </div>
     </Box>
