@@ -51,9 +51,9 @@ const HomeContent = () => {
       )}
       <ul>
         {data &&
-          [data].map(({ japanese, romaji }) => (
-            <li key={japanese}>
-              <h3>{romaji}</h3>
+          [data].map(({ hiragana }) => (
+            <li key={hiragana.japanese}>
+              <h3>{hiragana.romaji}</h3>
             </li>
           ))}
       </ul>
