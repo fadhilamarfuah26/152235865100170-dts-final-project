@@ -36,7 +36,7 @@ const HomeContent = () => {
     
     <div>
       <h1>API Posts</h1>
-      {loading && <div>A moment please...</div>}
+      {loading && (<div>A moment please...</div>)}
       {error && (
         <div>{`There is a problem fetching the post data - ${error}`}</div>
       )}
