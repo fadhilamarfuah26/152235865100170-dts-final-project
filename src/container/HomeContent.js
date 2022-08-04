@@ -40,7 +40,7 @@ const HomeContent = () => {
       justifyContent: 'space-between',
   }}>
       {
-          _.mapValues(hiragana => (
+          _.mapValues(({hiragana}) => (
               <HiraganaContent key={hiragana.name} hiragana={hiragana}></HiraganaContent>
           ))
       }
