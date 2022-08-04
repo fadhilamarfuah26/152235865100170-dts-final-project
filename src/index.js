@@ -10,14 +10,12 @@ import Login from './container/Login';
 import HomeContent from './container/HomeContent';
 import Register from './container/Register';
 import NotFound from './container/NotFound';
-import HomeNot from './HomeNot';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
     <BrowserRouter>
       <Routes>
-      <Route path= "/home" element={<HomeNot/>}/>
         <Route path="/" element={
           <PrivateComponent>
             <App />
