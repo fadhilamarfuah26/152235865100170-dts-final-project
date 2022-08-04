@@ -2,6 +2,7 @@ import { Box } from '@mui/material';
 import { useState, useEffect } from "react";
 import rapid from '../api/rapid'
 import HiraganaContent from '../component/HiraganaContent'
+
 const HomeContent = () => {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -38,8 +39,8 @@ const HomeContent = () => {
       justifyContent: 'space-between',
   }}>
       {
-          [data].map(hiragana => (
-              <HiraganaContent key={hiragana.japanese} hiragana={hiragana}></HiraganaContent>
+          data.index.map(hiragana => (
+              <HiraganaContent key={hiragana.name} hiragana={hiragana}></HiraganaContent>
           ))
       }
   </Box>
@@ -51,9 +52,9 @@ const HomeContent = () => {
       )}
       <ul>
         {data &&
-          [data].map(({ hiragana }) => (
-            <li key={hiragana.japanese}>
-              <h3>{hiragana.romaji}</h3>
+          data.index.map(({ hiragana }) => (
+            <li key={hiragana.name}>
+              <h3>{hiragana.content}</h3>
             </li>
           ))}
       </ul>
