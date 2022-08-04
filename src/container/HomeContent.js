@@ -40,14 +40,14 @@ const HomeContent = () => {
       {error && (
         <div>{`There is a problem fetching the post data - ${error}`}</div>
       )}
-      <ul>
+      
         {data &&
           _.mapValues(data,([ name, content ]) => (
-            <li key={[name.value]}>
+            <ul><li key={[name.value]}>
               <h3>{[content.value]}</h3>
-            </li>
+            </li></ul>
           ))}
-      </ul>
+      
     </div>
     </Box>
   );
