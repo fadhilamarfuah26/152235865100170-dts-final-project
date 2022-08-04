@@ -7,7 +7,7 @@ const get = id => {
   return rapid.get(`/hiragana/${id}`);
 };
 const findByTitle = romaji => {
-    return rapid.get(`/tutorials?romaji=${romaji}`);
+    return rapid.get(`/hiragana?romaji=${romaji}`);
   };
 
   const ServiceRapid = {getAll, get, findByTitle};

@@ -38,7 +38,7 @@ const HomeContent = () => {
       justifyContent: 'space-between',
   }}>
       {
-          data.map(hiragana => (
+          [data].map(hiragana => (
               <HiraganaContent key={hiragana.japanese} hiragana={hiragana}></HiraganaContent>
           ))
       }
@@ -51,7 +51,7 @@ const HomeContent = () => {
       )}
       <ul>
         {data &&
-          data.map(({ japanese, romaji }) => (
+          [data].map(({ japanese, romaji }) => (
             <li key={japanese}>
               <h3>{romaji}</h3>
             </li>

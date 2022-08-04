@@ -1,7 +1,7 @@
 import './App.css';
 import '@fontsource/josefin-sans'
 import { ThemeProvider } from '@mui/material';
-import { Outlet } from 'react-router-dom';
+
 
 import NavBar from './component/NavBar';
 import theme from './themes/theme';
@@ -14,7 +14,6 @@ const App = () => {
         <NavBar />
         <WallBar/>
         <HomeContent/>
-        <Outlet/>
       </div>
     </ThemeProvider>
   );
