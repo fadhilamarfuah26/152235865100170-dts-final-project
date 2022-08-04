@@ -42,9 +42,9 @@ const HomeContent = () => {
       )}
       <ul>
         {data &&
-          _.mapValues(data,([ hiragana ]) => (
-            <li key={[hiragana.name.value]}>
-              <h3>{[hiragana.content.value]}</h3>
+          _.mapValues(data,([ name, content ]) => (
+            <li key={[name.value]}>
+              <h3>{[content.value]}</h3>
             </li>
           ))}
       </ul>
