@@ -2,7 +2,7 @@ import { Box } from '@mui/material';
 import _ from 'lodash';
 import { useState, useEffect } from "react";
 import rapid from '../api/rapid'
-import HiraganaContent from '../component/HiraganaContent'
+
 
 const HomeContent = () => {
   const [data, setData] = useState([]);
@@ -33,18 +33,7 @@ const HomeContent = () => {
       flexDirection: 'column',
       mt: 5,
   }}>
-    <Box sx={{
-      display: 'flex',
-      flexDirection: 'row',
-      flexWrap: 'wrap',
-      justifyContent: 'space-between',
-  }}>
-      {
-          _.mapValues(([hiragana]) => (
-              <HiraganaContent key={hiragana.name} hiragana={hiragana}></HiraganaContent>
-          ))
-      }
-  </Box>
+    
     <div>
       <h1>API Posts</h1>
       {loading && <div>A moment please...</div>}
@@ -54,8 +43,8 @@ const HomeContent = () => {
       <ul>
         {data &&
           _.mapValues(([ hiragana ]) => (
-            <li key={[hiragana.name]}>
-              <h3>{[hiragana.content]}</h3>
+            <li key={[hiragana.name.value]}>
+              <h3>{[hiragana.content.value]}</h3>
             </li>
           ))}
       </ul>
