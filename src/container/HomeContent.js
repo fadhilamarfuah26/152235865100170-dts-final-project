@@ -2,7 +2,7 @@ import { Box } from '@mui/material';
 import { useEffect, useState } from 'react';
 
 import rapid from '../api/rapid';
-import HiraganaContent from '../components/HiraganaContent';
+import HiraganaContent from '../component/HiraganaContent';
 
 const HomeContent = () => {
     const [movies, setMovies] = useState([]);
