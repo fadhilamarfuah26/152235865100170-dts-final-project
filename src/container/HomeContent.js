@@ -1,45 +1,49 @@
 import { Box } from '@mui/material';
-import _ from 'lodash';
-import { useState, useEffect } from "react";
-import rapid from '../api/rapid'
+import { useEffect, useState } from 'react';
 
+import rapid from '../api/rapid';
+import HiraganaContent from '../components/HiraganaContent';
 
 const HomeContent = () => {
-  const [data, setData] = useState([]);
-  
-
-  useEffect(() => {
-    const getData = async () => {
-      try {
-        const response = await rapid.get(
-          'https://japanese-alphabet.p.rapidapi.com/api/hiragana'
-        );
-        setData(response.data.result);
-      } catch (error) {
-        console.log(error);
-    }
-  }
-    getData();
-  }, []);
-
-  return (
-    <Box sx={{
-      display: 'flex',
-      flexDirection: 'column',
-      mt: 5,
-  }}>
+    const [movies, setMovies] = useState([]);
     
-    <div>
-      <h1>API Posts</h1>
-        {data &&
-          (_.mapValues(data,([ name, content ]) => (
-            <ul><li key={[name.value]}>
-              <h3>{[content.value]}</h3>
-            </li></ul>
-          )))}
-      
-    </div>
-    </Box>
-  );
+
+    useEffect(() => {
+        const fetchMovies = async () => {
+            try {
+                const fetchedMovies = await rapid.get("hiragana");
+                setMovies(fetchedMovies.data.results);
+                
+            } catch (error) {
+                console.log(error);
+            }
+        }
+
+        fetchMovies();
+    }, []);
+
+
+    return (
+        <Box sx={{
+            display: 'flex',
+            flexDirection: 'column',
+            mt: 5,
+        }}>
+            
+            <Box sx={{
+                display: 'flex',
+                flexDirection: 'row',
+                flexWrap: 'wrap',
+                justifyContent: 'space-between',
+            }}>
+                {
+                    movies.map(movie => (
+                        <HiraganaContent key={movie.name} movie={movie}></HiraganaContent>
+                    ))
+                }
+            </Box>
+        </Box>
+    );
 }
-export default HomeContent
+
+export default HomeContent;
